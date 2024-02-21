@@ -1,12 +1,25 @@
-import timeit
 from matrixClass import matrix
-from scalarMult1 import scalarMult1
-from scalarMult2 import scalarMult2
+from matrixByMatrixMult import multMatrix
 
 
-matrixOne = matrix(100,100,[],[x for x in range(10000)])
-matrixTwo = matrix(2,2,[],"5,6,7,8".split(','))
+matrixOne = matrix(3,1,[],"1,2,3".split(','), [])
+matrixTwo = matrix(1,3,[],"4,5,6".split(','), [])
 
 matrixOne.constructMatrix(elements=matrixOne.elements,rows=matrixOne.rows, 
                           columns=matrixOne.columns, entries= matrixOne.entries)
+
+matrixTwo.constructMatrix(elements=matrixTwo.elements,rows=matrixTwo.rows, 
+                          columns=matrixTwo.columns, entries= matrixTwo.entries)
+
+
+#matrixTwo.columnizeMatrix(matrixTwo.elements, [], matrixTwo.columns, matrixTwo.rows)
+
+multMatrix(matrixOne, matrixTwo)
+
+
+
+
+
+
+
 
