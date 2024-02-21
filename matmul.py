@@ -1,20 +1,22 @@
+import timeit
 from matrixClass import matrix
 from matrixByMatrixMult import multMatrix
+from exponentiation import takeExponent
 
 
-matrixOne = matrix(3,1,[],"1,2,3".split(','), [])
-matrixTwo = matrix(1,3,[],"4,5,6".split(','), [])
+matrixOne = matrix(2,2,[],[x for x in range(4)], [], False)
+matrixTwo = matrix(2,2,[],[x for x in range(4)], [], False)
 
 matrixOne.constructMatrix(elements=matrixOne.elements,rows=matrixOne.rows, 
-                          columns=matrixOne.columns, entries= matrixOne.entries)
+                          columns=matrixOne.columns, entries= matrixOne.entries, constructFlag= matrixOne.constructFlag)
 
 matrixTwo.constructMatrix(elements=matrixTwo.elements,rows=matrixTwo.rows, 
-                          columns=matrixTwo.columns, entries= matrixTwo.entries)
+                          columns=matrixTwo.columns, entries= matrixTwo.entries,  constructFlag= matrixTwo.constructFlag)
 
 
 #matrixTwo.columnizeMatrix(matrixTwo.elements, [], matrixTwo.columns, matrixTwo.rows)
 
-multMatrix(matrixOne, matrixTwo)
+takeExponent(matrixOne, 18)
 
 
 

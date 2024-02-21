@@ -3,40 +3,19 @@
 def timingScalar():
     import timeit
     from matrixClass import matrix
-    from scalarMult1 import scalarMult1
-    from scalarMult2 import scalarMult2
+    from matrixByMatrixMult import multMatrix
+
+    matrixOne = matrix(1000,1000,[],[x for x in range(1000000)], [], False)
+    matrixTwo = matrix(1000,1000,[],[x for x in range(1000000)], [], False)
 
     args = (1,  2)
-    rep = 1000000
-    n=100
-    execTimeList1 = [] 
-    execTimeList2 = []
+    rep = 1000
 
-    for x in range(0,n):
-        numList = [x for x in range(5,n^2+1)]
-        matrixOne = matrix(len(numList)-1,len(numList)-1,[],numList)
+    # Time the function with the given arguments
+    elapsed_time = timeit.timeit('multMatrix(matrixOne,matrixTwo)', number=rep)
+    average_time = elapsed_time /  100
 
+    print(f"The function took on average {average_time} seconds to execute.")
+    print(f"Execution time of multMatrix: {elapsed_time} seconds")
 
-        # Time the function with the given arguments
-        timeTaken1 = timeit.timeit('scalarMult1(2, matrixOne)', globals=globals(), number = rep)
-        averageTime1 = timeTaken1 / rep
-
-        timeTaken2 = timeit.timeit('scalarMult2(2, matrixOne)', globals=globals(), number = rep)
-        averageTime2 = timeTaken1 / rep
-
-        execTimeList1.append(timeTaken1)
-        execTimeList2.append(timeTaken2)
-
-
-
-
-
-    '''print(f"Execution time of ScalarMult1: {timeTaken1} seconds")
-    print(f"Average time of ScalarMult1: {averageTime1} seconds")
-    print('\n')
-    print(f"Execution time of ScalarMult2: {timeTaken2} seconds")
-    print(f"Average time of ScalarMult2: {averageTime2} seconds")'''
-
-    print(execTimeList1)
-    print("\n")
-    print(execTimeList2)
+timingScalar()

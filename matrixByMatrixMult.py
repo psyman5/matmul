@@ -9,23 +9,24 @@ def multMatrix(m1, m2): #TODO: implement matrix multiplication
     
     rowCounter = 0
     columnCounter = 0
-    newMat = matrix(rows=m1.rows,columns=m2.columns, elements= [], 
-                    entries = [], columnizedElements= [])
-    #newMat.constructMatrix(newMat.elements,newMat.rows,newMat.columns, entries = "")
+    newMat = matrix(rows=m1.rows,columns=m2.columns, elements= [], # create a new matrix,
+                    entries = [], columnizedElements= [], constructFlag= False)
     
 
     
     m2.columnizeMatrix(m2.elements, [], m2.columns, m2.rows)
 
-    for index, aRow in enumerate(m1.elements):
+    for indexA, aRow in enumerate(m1.elements): #for every row in matrix 1, 
         
-        for bRow in m2.columnizedElements:  
-            prod = dotProd(a = aRow, b = m2.columnizedElements[index])
-            print(index, prod)
+        for indexB, bRow in enumerate(m2.columnizedElements): #for every column in matrix 2, 
+            prod = dotProd(a = aRow, b = m2.columnizedElements[indexB]) #get the dot product of the two,
+            #print(index, prod)
             
-            newMat.entries.append(prod)
+            newMat.entries.append(prod) #add it to a new list containing the entries of the new matrix
+            #print(indexA,indexB, newMat.entries)
     
-    newMat.constructMatrix(newMat.elements, newMat.rows, newMat.columns, newMat.entries)
+    newMat.constructMatrix(newMat.elements, newMat.rows,
+                            newMat.columns, newMat.entries, constructFlag= newMat.constructFlag) #construct the matrix
     
 
-    return newMat
+    return newMat #return the matrix

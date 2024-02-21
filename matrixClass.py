@@ -1,10 +1,11 @@
 class matrix():
-    def __init__(self, rows, columns, elements, entries, columnizedElements):
+    def __init__(self, rows, columns, elements, entries, columnizedElements, constructFlag):
         self.rows = rows 
         self.columns = columns
         self.elements = elements
         self.entries = entries
         self.columnizedElements = columnizedElements
+        self.constructFlag = constructFlag
 
     def encodeElements(self, entries, columns, rows):
         elements = [[] for _ in range(rows)]
@@ -54,7 +55,7 @@ class matrix():
         for x in elements:
             print(x)
 
-    def constructMatrix(self, elements, rows, columns, entries): #assembles matrix from pieces.
+    def constructMatrix(self, elements, rows, columns, entries, constructFlag): #assembles matrix from pieces.
 
         def encodeElements(self, entries, columns, rows):
             elements = [[] for _ in range(rows)]
@@ -93,8 +94,9 @@ class matrix():
 
         elements = encodeElements(self, entries, columns, rows)
 
-        displayMatrix(self, elements)
-        print("\n")
+        if constructFlag is True: 
+            displayMatrix(self, elements)
+            print("\n")
 
 
     def columnizeMatrix(self, elements, columnizedElements, columns, rows):
@@ -102,13 +104,15 @@ class matrix():
         rowCounter = 0 
         columnizedElements = [[] for _ in elements]
         
-        if rows > columns:
-            return False
-        for c in range(columns):
-            for index, row in enumerate(elements):
-               columnizedElements[c].append(row[columnCounter])
-               #print(row, columnCounter,columnizedElements[index])
-            columnCounter += 1
+        if rows <= columns:
+            for c in range(columns):
+                for index, row in enumerate(elements):
+                    columnizedElements[c].append(row[columnCounter])
+                    #print(row, columnCounter,columnizedElements[index])
+                columnCounter += 1
+            
+        else:
+            return elements
 
         self.columnizedElements = columnizedElements
 
