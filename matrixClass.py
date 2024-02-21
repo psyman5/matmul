@@ -8,14 +8,14 @@ class matrix():
     def encodeElements(self, entries, columns, rows):
         elements = [[] for _ in range(rows)]
         rowCounter = 0
-        columnCounter = 1
+        columnCounter = 0
 
         for entry in entries:
             entry = int(entry)
-            if columnCounter < columns:
+            if columnCounter < columns -1:
                 elements[rowCounter].append(entry)
                 columnCounter += 1
-            elif columnCounter == columns and ((rowCounter + 1) != rows):
+            elif columnCounter == columns -1:
                 elements[rowCounter].append(entry)
                 columnCounter = 0
                 rowCounter += 1
@@ -84,7 +84,8 @@ class matrix():
 
         def check():
             for element in elements:
-                print(len(element))
+                if len(element) < columns:
+                    print("Dimension Error!")
 
         elements = encodeElements(self, entries, columns, rows)
         displayMatrix(self, encodeElements(self, entries, columns, rows))

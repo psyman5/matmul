@@ -1,5 +1,5 @@
 
-def multMatrix(m1, m2):
+def multMatrix(m1, m2): #TODO: implement matrix multiplication
     from matrixClass import matrix
     if m1.rows != m2.columns:
         print("Incompatible Matrices!")
