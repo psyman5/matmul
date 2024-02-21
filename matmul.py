@@ -2,7 +2,6 @@ import timeit
 from matrixClass import matrix
 from matrixByMatrixMult import multMatrix
 from exponentiation import takeExponent
-from matAdd import matAdd
 
 
 matrixOne = matrix(2,2,[],[x for x in range(2**2)], [], True)
@@ -18,7 +17,6 @@ matrixTwo.constructMatrix(elements=matrixTwo.elements,rows=matrixTwo.rows,
 #matrixTwo.columnizeMatrix(matrixTwo.elements, [], matrixTwo.columns, matrixTwo.rows)
 
 #multMatrix(matrixOne, matrixTwo)
-matAdd(matrixOne, matrixTwo)
 
 
 
