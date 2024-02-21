@@ -1,9 +1,10 @@
 class matrix():
-    def __init__(self, rows, columns, elements, entries):
+    def __init__(self, rows, columns, elements, entries, columnizedElements):
         self.rows = rows 
         self.columns = columns
         self.elements = elements
         self.entries = entries
+        self.columnizedElements = columnizedElements
 
     def encodeElements(self, entries, columns, rows):
         elements = [[] for _ in range(rows)]
@@ -70,7 +71,8 @@ class matrix():
                     elements[rowCounter].append(entry)
                     #print("Row Done:: " + str(entry),str(rowCounter),str(columnCounter))
                     columnCounter = 0
-                    rowCounter += 1
+                    if rows > 1:
+                        rowCounter += 1
                 else:
                     raise ValueError("Incorrect Matrix Dimensions")
             self.elements = elements
@@ -82,12 +84,36 @@ class matrix():
             for x in elements:
                 print(x)
 
-        def check():
+        '''def check():
             for element in elements:
                 if len(element) < columns:
                     print("Dimension Error!")
+                else:
+                    return True'''
 
         elements = encodeElements(self, entries, columns, rows)
-        displayMatrix(self, encodeElements(self, entries, columns, rows))
-        check()
 
+        displayMatrix(self, elements)
+        print("\n")
+
+
+    def columnizeMatrix(self, elements, columnizedElements, columns, rows):
+        columnCounter = 0
+        rowCounter = 0 
+        columnizedElements = [[] for _ in elements]
+        
+        if rows > columns:
+            return False
+        for c in range(columns):
+            for index, row in enumerate(elements):
+               columnizedElements[c].append(row[columnCounter])
+               #print(row, columnCounter,columnizedElements[index])
+            columnCounter += 1
+
+        self.columnizedElements = columnizedElements
+
+        return columnizedElements
+
+        
+
+            
