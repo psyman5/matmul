@@ -104,7 +104,9 @@ class matrix():
         rowCounter = 0 
         columnizedElements = [[] for _ in elements]
         
-        if rows <= columns:
+        print(rows,columns)
+
+        if rows >= columns:
             for c in range(columns):
                 for index, row in enumerate(elements):
                     columnizedElements[c].append(row[columnCounter])
@@ -112,7 +114,8 @@ class matrix():
                 columnCounter += 1
             
         else:
-            return elements
+            self.columnizedElements = elements
+            return columnizedElements
 
         self.columnizedElements = columnizedElements
 
