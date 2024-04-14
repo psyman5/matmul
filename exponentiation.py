@@ -6,7 +6,9 @@ def takeExponent(matrix, power):
     for x in range(power):
         newMat = multMatrix(matrix, newMat)
 
-    newMat.displayMatrix(newMat.elements)
+    newMat.displayMatrix()
+
+    print("\n")
 
     return newMat
         

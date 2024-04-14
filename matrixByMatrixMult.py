@@ -10,7 +10,7 @@ def multMatrix(m1, m2): #TODO: implement matrix multiplication
     rowCounter = 0
     columnCounter = 0
     newMat = matrix(rows=m1.rows,columns=m2.columns, elements= [], # create a new matrix,
-                    entries = [], columnizedElements= [], constructFlag= True)
+                    entries = [], columnizedElements= [], constructFlag= False)
     
 
     

@@ -50,9 +50,9 @@ class matrix():
         
         return rawEntries
 
-    def displayMatrix(self, elements):
+    def displayMatrix(self):
 
-        for x in elements:
+        for x in self.elements:
             print(x)
 
     def constructMatrix(self, elements, rows, columns, entries, constructFlag): #assembles matrix from pieces.
@@ -62,11 +62,11 @@ class matrix():
             rowCounter = 0
             columnCounter = 0
 
-            for entry in entries: #TODO fix this, zero-based indexing issue
+            for entry in entries:
                 entry = int(entry)
                 if columnCounter < columns - 1 :
                     elements[rowCounter].append(entry)
-                    #print("Col Done: " + str(entry),str(rowCounter),str(columnCounter))
+                    
                     columnCounter += 1
                 elif columnCounter == columns - 1:
                     elements[rowCounter].append(entry)
@@ -80,22 +80,15 @@ class matrix():
 
             return elements
     
-        def displayMatrix(self, elements):
+        def displayMatrix(self):
 
-            for x in elements:
+            for x in self.elements:
                 print(x)
-
-        '''def check():
-            for element in elements:
-                if len(element) < columns:
-                    print("Dimension Error!")
-                else:
-                    return True'''
 
         elements = encodeElements(self, entries, columns, rows)
 
         if constructFlag is True: 
-            displayMatrix(self, elements)
+            displayMatrix(self)
             print("\n")
 
 
@@ -104,7 +97,7 @@ class matrix():
         rowCounter = 0 
         columnizedElements = [[] for _ in elements]
         
-        print(rows,columns)
+        #print(rows,columns)
 
         if rows >= columns:
             for c in range(columns):
@@ -122,19 +115,67 @@ class matrix():
         return columnizedElements
     
     def addRow(self, rowEntries):
-        self.rows += 1
-        self.elements.append()
-        for index, entry in enumerate(rowEntries):
-            self.elements[-1][index] = entry
+        if len(rowEntries) != self.columns:
+            print("Incorrect number of row values!")
+            raise ValueError
+        
+        else:
+            self.rows += 1
+            self.elements.append([])
+
+            for entry in rowEntries:
+                self.elements[-1].append(entry)
 
             return self.elements
         
     def addColumn(self, colEntries):
-        self.columns += 1
-        entryIndex = 0
-        for row in self.elements:
-            row.append(colEntries[entryIndex])
+        if len(colEntries) != self.rows:
+            print("Incorrect number of column values!")
+            raise ValueError
+        else:
+            self.columns += 1
+            entryIndex = 0
+            for index, row in enumerate(self.elements):
+                row.append(colEntries[index])
+            return self.elements
 
+        
+
+    def removeRow(self, rowNum):
+        if (rowNum > self.rows) or ( rowNum < 1):
+            print("Row number accessed does not exist.")
+            raise ValueError
+        else:
+            self.rows -= 1
+            del self.elements[rowNum - 1]
+
+            return self.elements
+
+    def removeColumn(self, colNum):
+        if (colNum > self.columns) or ( colNum < 1):
+            print("Column number accessed does not exist.")
+            raise ValueError
+        
+        else:
+            self.columns -= 1
+            for element in self.elements:
+                del element[colNum - 1]
+            
+            return self.elements
+
+    def setNumber(self, row, col, val):
+        if (row > self.rows) or (row < 1):
+            print("Row number accessed does not exist.")
+            raise ValueError
+        
+        elif (col > self.columns) or (col < 1):
+            print("Column number accessed does not exist.")
+            raise ValueError
+
+        else:
+            self.elements[row-1][col-1] = val
+
+        return self.elements
         
 
             
