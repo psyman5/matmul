@@ -3,6 +3,8 @@ from matrixClass import matrix
 
 def multMatrix(m1, m2): #TODO: implement matrix multiplication
     
+    '''Multiplies two Matrix objects via the naive method. Time complexity: O(n^3).'''
+
     if m1.rows != m2.columns:
         print("Incompatible Matrices!")
         return

@@ -24,7 +24,9 @@ matrixOne.setNumber(2,1,3)
 
 matrixOne.displayMatrix()
 
-print(getDiagonalAndTrace(matrixOne)[0])
+print(getDiagonalAndTrace(matrixOne)[1])
+
+print(matrixOne.searchForOccurences(3))
 
 #takeExponent(matrixOne, 10)
 '''timeList = []
