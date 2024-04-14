@@ -120,6 +120,20 @@ class matrix():
         self.columnizedElements = columnizedElements
 
         return columnizedElements
+    
+    def addRow(self, rowEntries):
+        self.rows += 1
+        self.elements.append()
+        for index, entry in enumerate(rowEntries):
+            self.elements[-1][index] = entry
+
+            return self.elements
+        
+    def addColumn(self, colEntries):
+        self.columns += 1
+        entryIndex = 0
+        for row in self.elements:
+            row.append(colEntries[entryIndex])
 
         
 
