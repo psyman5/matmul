@@ -213,6 +213,18 @@ class matrix():
                     occurences.append([self.elements.index(row)+1, row.index(desired)+1])
 
         return occurences
+    
+    def getSparsity(self):
+
+        '''Finds the sparsity of the matrix. Returns a float fractional representation.'''
+
+        numZeroes = len(self.searchForOccurences(0))
+
+        sparsity = (1 - numZeroes/(self.rows*self.columns))
+
+        return sparsity
+
+
                     
         
 
