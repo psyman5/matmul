@@ -2,10 +2,10 @@ Matmul is a free and open source matrix library written in Python that allows th
 
 Currently supported:
   - Multiplication (scalar and matrix)
-  - Addition
-  - Exponentiation
+  - Matrix Addition
+  - Matrix Exponentiation
   - Sparsity Checking
-  - Sparse Matrix Compression and decompression
+  - Sparse Matrix Compression and Decompression
   - Matrix Element Manipulation (replacement)
   - Matrix Column Addition and Subtraction
   - Matrix Row Addition and Subtraction
