@@ -1,6 +1,6 @@
 from matrixClass import matrix
 
-def scalarMult(num, mat):
+def scalarMult(mat, num):
 
     '''Multiplies a Matrix object by a scalar value.'''
 

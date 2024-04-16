@@ -27,8 +27,7 @@ def multMatrix(m1, m2): #TODO: implement matrix multiplication
             newMat.entries.append(prod) #add it to a new list containing the entries of the new matrix
             #print(indexA,indexB, newMat.entries)
     
-    newMat.constructMatrix(newMat.elements, newMat.rows,
-                            newMat.columns, newMat.entries, constructFlag= newMat.constructFlag) #construct the matrix
+    newMat.constructMatrix() #construct the matrix
     
 
     return newMat #return the matrix

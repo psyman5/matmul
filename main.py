@@ -1,53 +1,53 @@
-import timeit
 from matrixClass import matrix
-from matrixByMatrixMult import multMatrix
+from dotAdd import dotAdd
+from dotProd import dotProd
 from exponentiation import takeExponent
 from getTrace import getDiagonalAndTrace
+from matrixByMatrixMult import multMatrix
+from scalarMult import scalarMult
+from sparseMatrixEncoder import matrixToCode
+from sparseMatrixEncoder import codeToMatrix
+import random
+
+random.seed(999)
 
 
-#matrixOne = matrix(2,2,[],[x for x in range(2**2)], [], True)
-#matrixTwo = matrix(2,2,[],[x for x in range(2**2)], [], True)
+testMatrix = matrix(100,100,None,[random.random()*x for x in range(100**2)], None, False)
 
-matrixOne = matrix(2,2,[],[4,4,2,3], [], False)
-matrixTwo = matrix(2,2,[],[3,6,4,8], [], True)
+testMatrix.constructMatrix()
 
-matrixOne.constructMatrix(elements=matrixOne.elements,rows=matrixOne.rows, 
-                          columns=matrixOne.columns, entries= matrixOne.entries, constructFlag= matrixOne.constructFlag)
+testMatrix2 = matrix(100,100,None,[random.random()*x for x in range(100**2)], None, False)
 
-#matrixTwo.constructMatrix(elements=matrixTwo.elements,rows=matrixTwo.rows, 
-                          #columns=matrixTwo.columns, entries= matrixTwo.entries,  constructFlag= matrixTwo.constructFlag)
+testMatrix2.constructMatrix()
+
+testMatrix3 = matrix(100,100, None,[], None, False )
+
+testMatrix3.constructMatrix()
+
+#dotAdd(testMatrix,testMatrix2)
+
+#dotProd(testMatrix, testMatrix2)
+
+takeExponent(testMatrix,3)
+
+getDiagonalAndTrace(testMatrix)[0]
+
+getDiagonalAndTrace(testMatrix)[1]
+
+multMatrix(testMatrix,testMatrix2)
+
+scalarMult(testMatrix,0)
+
+matCode = matrixToCode(testMatrix)
+
+codeToMatrix(testMatrix3, matCode)
 
 
-matrixOne.addRow([3,2])
-matrixOne.addColumn([4,4,4])
-matrixOne.setNumber(2,1,3)
-
-matrixOne.displayMatrix()
-
-print(getDiagonalAndTrace(matrixOne)[1])
-
-print(matrixOne.searchForOccurences(3))
-
-#takeExponent(matrixOne, 10)
-'''timeList = []
 
 
-for exponent in range(2, 31):
-    number = 10000
-    # Define the setup code
-    setup_code = """from __main__ import matrixOne, takeExponent"""
-    # Define the code to be timed
-    stmt = f"""takeExponent(matrixOne, {exponent})"""
-    # Time the execution of the code
-    execution_time = timeit.timeit(stmt, setup=setup_code, number = number)
 
-    timeList.append([exponent, execution_time/number])
-    
-    print(f"Time taken to calculate {matrixOne} raised to the power of {exponent} 10000 times: {execution_time} seconds")
 
-print(timeList)
 
-#matrixOne.displayMatrix()'''
 
 
 

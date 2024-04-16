@@ -1,5 +1,6 @@
 def dotAdd(a, b):
-    sumDot = 0
+
+    '''Dot addition of two matrices a and b.'''
 
     addedNums = [element + b[index] for index, element in enumerate(a)]
 

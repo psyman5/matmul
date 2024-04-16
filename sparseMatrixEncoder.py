@@ -1,17 +1,29 @@
 from matrixClass import matrix
+import random
 
-#sampleSparseMatrix = matrix(4,4, [0,2,0,0,3,1,8,7,9,0,0,1,0,0,0,4], [], [] ,constructFlag = True)
+def matrixToCode(matrix):
 
-sampleSparseMatrix = matrix(4,4,[],[0,2,0,0,3,1,8,7,9,0,0,1,0,0,0,4], [], True)
+    '''Encodes a matrix into a list of tuples containing row, column, and value information for non-zero entries, respectively.'''
 
-sampleSparseMatrix.constructMatrix(elements=sampleSparseMatrix.elements,rows=sampleSparseMatrix.rows, 
-                          columns=sampleSparseMatrix.columns, entries= sampleSparseMatrix.entries, constructFlag= sampleSparseMatrix.constructFlag)
+    encoded = []
 
-print(sampleSparseMatrix.getSparsity())
+    for index, row in enumerate(matrix.elements):
+        for col, element in enumerate(row):
+            if element != 0:
+                encoded.append((matrix.elements.index(row)+1, col+1, element))
+                #print(matrix.elements.index(row)+1)
+            else:
+                pass
+    return encoded
 
+def codeToMatrix(matrix, matrixEncoding):
 
+    '''Creates and constructs a matrix from an encoding done by matrixToCode. Does not return anything.'''
 
+    matrix.elements = [[0 for x in range(matrix.columns)] for row in range(matrix.rows)]
 
-
-def encodeSpareMatrix(matrix):
-    pass
+    for element in matrixEncoding:
+        #print(element[0])
+        matrix.setNumber(element[0], element[1], element[2])
+    
+    return

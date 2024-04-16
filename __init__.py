@@ -5,3 +5,5 @@ from exponentiation import takeExponent
 from getTrace import getDiagonalAndTrace
 from matrixByMatrixMult import multMatrix
 from scalarMult import scalarMult
+from sparseMatrixEncoder import matrixToCode
+from sparseMatrixEncoder import codeToMatrix

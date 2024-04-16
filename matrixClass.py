@@ -59,43 +59,14 @@ class matrix():
         for x in self.elements:
             print(x)
 
-    def constructMatrix(self, elements, rows, columns, entries, constructFlag): #assembles matrix from pieces.
+    def constructMatrix(self): #assembles matrix from pieces.
         
         '''Officially creates the matrix using previous functions.'''
 
+        elements = self.encodeElements(self.entries, self.columns, self.rows) #this isn't used but it is not working without it so i will keep it in here
 
-        def encodeElements(self, entries, columns, rows):
-            elements = [[] for _ in range(rows)]
-            rowCounter = 0
-            columnCounter = 0
-
-            for entry in entries:
-                entry = int(entry)
-                if columnCounter < columns - 1 :
-                    elements[rowCounter].append(entry)
-                    
-                    columnCounter += 1
-                elif columnCounter == columns - 1:
-                    elements[rowCounter].append(entry)
-                    #print("Row Done:: " + str(entry),str(rowCounter),str(columnCounter))
-                    columnCounter = 0
-                    if rows > 1:
-                        rowCounter += 1
-                else:
-                    raise ValueError("Incorrect Matrix Dimensions")
-            self.elements = elements
-
-            return elements
-    
-        def displayMatrix(self):
-
-            for x in self.elements:
-                print(x)
-
-        elements = encodeElements(self, entries, columns, rows) #this isn't used but it is not working without it so i will keep it in here
-
-        if constructFlag is True: 
-            displayMatrix(self)
+        if self.constructFlag is True: 
+            self.displayMatrix()
             print("\n")
 
 
@@ -189,6 +160,8 @@ class matrix():
         
         '''Changes a given element's value. ARGUMENT USES NORMAL MATRIX I,J NOTATION. DOES NOT USE ZERO BASED INDEXING.'''
 
+        print(row,col,val)
+
         if (row > self.rows) or (row < 1):
             print("Row number accessed does not exist.")
             raise ValueError
@@ -204,7 +177,7 @@ class matrix():
     
     def searchForOccurences(self, desired):
         
-        '''Searches for all occurences of a certain value. '''
+        '''Searches for all occurences of a certain value. RETURN USES NORMAL MATRIX I,J NOTATION. DOES NOT USE ZERO BASED INDEXING.'''
 
         occurences = []
         for row in self.elements:
@@ -220,7 +193,7 @@ class matrix():
 
         numZeroes = len(self.searchForOccurences(0))
 
-        sparsity = (1 - numZeroes/(self.rows*self.columns))
+        sparsity = (numZeroes/(self.rows*self.columns))
 
         return sparsity
 
