@@ -5,9 +5,9 @@ Currently supported:
   - Matrix Addition
   - Matrix Exponentiation
   - Sparsity Checking
-  - Sparse Matrix Compression and Decompression
-  - Matrix Element Manipulation (replacement)
-  - Matrix Column Addition and Subtraction
-  - Matrix Row Addition and Subtraction
+  - Sparse Matrix compression and decompression
+  - Matrix Element Replacement
+  - Matrix Column insertion and subtraction
+  - Matrix Row insertion and removal
   - Trace and List of Elements on the Main Diagonal
 
