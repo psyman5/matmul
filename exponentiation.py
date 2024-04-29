@@ -1,14 +1,12 @@
-from matrixByMatrixMult import multMatrix
+from matrixByMatrixMult import matMul
 def takeExponent(matrix, power):
+
+    '''Takes the exponent of a given matrix to a given power. Returns a matrix object.'''
     
-    newMat = multMatrix(matrix, matrix)
-
-    for x in range(power):
-        newMat = multMatrix(matrix, newMat)
-
-    newMat.displayMatrix()
-
-    print("\n")
-
+    if power == 2:
+        newMat = matMul(matrix, matrix)
+    else:
+        for x in range(power):
+            newMat = matMul(matrix, newMat)
     return newMat
         

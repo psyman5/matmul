@@ -11,7 +11,6 @@ def matrixToCode(matrix):
         for col, element in enumerate(row):
             if element != 0:
                 encoded.append((matrix.elements.index(row)+1, col+1, element))
-                #print(matrix.elements.index(row)+1)
             else:
                 pass
     return encoded

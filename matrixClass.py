@@ -1,10 +1,10 @@
 class matrix():
-    def __init__(self, rows, columns, elements, entries, columnizedElements, constructFlag):
+    def __init__(self, rows, columns, elements, entries, transposedElements, constructFlag):
         self.rows = rows 
         self.columns = columns
         self.elements = elements
         self.entries = entries
-        self.columnizedElements = columnizedElements
+        self.transposedElements = transposedElements
         self.constructFlag = constructFlag
 
     def encodeElements(self, entries, columns, rows):
@@ -70,30 +70,30 @@ class matrix():
             print("\n")
 
 
-    def columnizeMatrix(self, elements, columnizedElements, columns, rows):
+    def columnizeMatrix(self, elements, transposedElements, columns, rows):
         
         '''Takes the transpose of the matrix. Specifically limited to row > columns matrices.'''
 
         columnCounter = 0
         rowCounter = 0 
-        columnizedElements = [[] for _ in elements]
+        transposedElements = [[] for _ in elements]
         
         #print(rows,columns)
 
         if rows >= columns:
             for c in range(columns):
                 for index, row in enumerate(elements):
-                    columnizedElements[c].append(row[columnCounter])
-                    #print(row, columnCounter,columnizedElements[index])
+                    transposedElements[c].append(row[columnCounter])
+                    #print(row, columnCounter,transposedElements[index])
                 columnCounter += 1
             
         else:
-            self.columnizedElements = elements
-            return columnizedElements
+            self.transposedElements = elements
+            return transposedElements
 
-        self.columnizedElements = columnizedElements
+        self.transposedElements = transposedElements
 
-        return columnizedElements
+        return transposedElements
     
     def addRow(self, rowEntries):
         
@@ -125,8 +125,6 @@ class matrix():
             for index, row in enumerate(self.elements):
                 row.append(colEntries[index])
             return self.elements
-
-        
 
     def removeRow(self, rowNum):
         

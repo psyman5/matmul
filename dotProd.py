@@ -1,6 +1,6 @@
 def dotProd(a, b):
 
-    '''Dot product of two matrices. Used in multMatrix.'''
+    '''Dot product of two matrices. Used in matMul.'''
 
     sumDot = 0
     for index, element in enumerate(a):

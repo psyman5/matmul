@@ -1,7 +1,7 @@
 from dotProd import dotProd
 from matrixClass import matrix
 
-def multMatrix(m1, m2): #TODO: implement matrix multiplication
+def matMul(m1, m2): #TODO: move to Strassen's Algorithm
     
     '''Multiplies two Matrix objects via the naive method. Time complexity: O(n^3).'''
 
@@ -12,7 +12,7 @@ def multMatrix(m1, m2): #TODO: implement matrix multiplication
     rowCounter = 0
     columnCounter = 0
     newMat = matrix(rows=m1.rows,columns=m2.columns, elements= [], # create a new matrix,
-                    entries = [], columnizedElements= [], constructFlag= False)
+                    entries = [], transposedElements= [], constructFlag= False)
     
 
     
@@ -20,8 +20,8 @@ def multMatrix(m1, m2): #TODO: implement matrix multiplication
 
     for indexA, aRow in enumerate(m1.elements): #for every row in matrix 1, 
         
-        for indexB, bRow in enumerate(m2.columnizedElements): #for every column in matrix 2, 
-            prod = dotProd(a = aRow, b = m2.columnizedElements[indexB]) #get the dot product of the two,
+        for indexB, bRow in enumerate(m2.transposedElements): #for every column in matrix 2, 
+            prod = dotProd(a = aRow, b = m2.transposedElements[indexB]) #get the dot product of the two,
             #print(index, prod)
             
             newMat.entries.append(prod) #add it to a new list containing the entries of the new matrix
