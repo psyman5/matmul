@@ -17,7 +17,7 @@ def matrixToCode(matrix):
 
 def codeToMatrix(matrix, matrixEncoding):
 
-    '''Creates and constructs a matrix from an encoding done by matrixToCode. Does not return anything.'''
+    '''Creates and constructs matrix from an encoding done by matrixToCode. Returns a matrix object.'''
 
     matrix.elements = [[0 for x in range(matrix.columns)] for row in range(matrix.rows)]
 

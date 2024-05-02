@@ -3,31 +3,36 @@ from matrixClass import matrix
 
 def matMul(m1, m2): #TODO: move to Strassen's Algorithm
     
-    '''Multiplies two Matrix objects via the naive method. Time complexity: O(n^3).'''
+    '''Multiplies two Matrix objects via the naive method.'''
 
     if m1.rows != m2.columns:
         print("Incompatible Matrices!")
+        print((m1.rows, m1.columns), (m2.rows, m2.columns))
         return
     
     rowCounter = 0
     columnCounter = 0
-    newMat = matrix(rows=m1.rows,columns=m2.columns, elements= [], # create a new matrix,
-                    entries = [], transposedElements= [], constructFlag= False)
     
-
+    newMat = matrix(rows=m1.rows, columns=m2.columns, elements= [], # create a new matrix,
+                    entries = [], constructFlag = False)
     
-    m2.columnizeMatrix(m2.elements, [], m2.columns, m2.rows)
+    m2.transposeMatrix() #transpose for multiplication
+    #m2.displayMatrix()
 
-    for indexA, aRow in enumerate(m1.elements): #for every row in matrix 1, 
-        
-        for indexB, bRow in enumerate(m2.transposedElements): #for every column in matrix 2, 
-            prod = dotProd(a = aRow, b = m2.transposedElements[indexB]) #get the dot product of the two,
-            #print(index, prod)
+    if m2.rows != 1:
+        for rowIndexA, rowA in enumerate(m1.elements):
+                for rowIndexB, rowB in enumerate(m2.elements):
+                    #print(rowA, rowB)
+                    newMat.entries.append(dotProd(rowA, rowB))
+
+    else:
+        for rowIndexA, rowA in enumerate(m1.elements):
+            newMat.entries.append(dotProd(rowA, m2.elements[0]))
             
-            newMat.entries.append(prod) #add it to a new list containing the entries of the new matrix
-            #print(indexA,indexB, newMat.entries)
     
+
     newMat.constructMatrix() #construct the matrix
     
+    m2.transposeMatrix() #transpose matrix back
 
     return newMat #return the matrix

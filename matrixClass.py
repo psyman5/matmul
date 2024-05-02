@@ -1,10 +1,9 @@
 class matrix():
-    def __init__(self, rows, columns, elements, entries, transposedElements, constructFlag):
+    def __init__(self, rows, columns, elements, entries, constructFlag):
         self.rows = rows 
         self.columns = columns
         self.elements = elements
         self.entries = entries
-        self.transposedElements = transposedElements
         self.constructFlag = constructFlag
 
     def encodeElements(self, entries, columns, rows):
@@ -16,7 +15,7 @@ class matrix():
         columnCounter = 0
 
         for entry in entries:
-            entry = int(entry)
+            entry = float(entry)
             if columnCounter < columns -1:
                 elements[rowCounter].append(entry)
                 columnCounter += 1
@@ -42,7 +41,6 @@ class matrix():
 
         for row in elements:
             if columnCounter < columns:
-                print(columnCounter)
                 rawEntries.append(str(row[columnCounter]))
                 columnCounter += 1
 
@@ -55,9 +53,13 @@ class matrix():
     def displayMatrix(self):
         
         '''Prints the matrix via the terminal.'''
+        if self.rows == 1:
+            for x in self.elements:
+                print(x, end=" ")
 
-        for x in self.elements:
-            print(x)
+        else:
+            for x in self.elements:
+                print(x)
 
     def constructMatrix(self): #assembles matrix from pieces.
         
@@ -70,31 +72,70 @@ class matrix():
             print("\n")
 
 
-    def columnizeMatrix(self, elements, transposedElements, columns, rows):
+    def transposeMatrix(self):
         
-        '''Takes the transpose of the matrix. Specifically limited to row > columns matrices.'''
-
-        columnCounter = 0
-        rowCounter = 0 
-        transposedElements = [[] for _ in elements]
+        '''Takes the transpose of the matrix. Alters the object elements to be those of the transpose.'''
         
-        #print(rows,columns)
+        if (self.rows == self.columns) and (self.rows != 1 and self.columns != 1):
 
-        if rows >= columns:
-            for c in range(columns):
-                for index, row in enumerate(elements):
-                    transposedElements[c].append(row[columnCounter])
-                    #print(row, columnCounter,transposedElements[index])
-                columnCounter += 1
+            transposedElements = [[0 for x in range(self.columns)] for x in self.elements]
+
+            for rowIndex, row in enumerate(self.elements):
+                for colIndex, col in enumerate(row):
+                    if colIndex != rowIndex and transposedElements[rowIndex][colIndex] != self.elements[colIndex][rowIndex]:
+                        transposedElements[rowIndex][colIndex], transposedElements[colIndex][rowIndex] = self.elements[colIndex][rowIndex], self.elements[rowIndex][colIndex]
+
+                    elif colIndex == rowIndex:
+                        transposedElements[rowIndex][colIndex] = self.elements[rowIndex][colIndex]
+                    
+                    else:
+                        pass
+            
+            self.elements = transposedElements
+
+            self.rows, self.columns = self.columns, self.rows
+
+        elif ((self.rows > self.columns) or (self.rows < self.columns)) and (self.rows != 1 and self.columns != 1):
+            transposedElements = []
+            transpose = []
+
+
+            if self.rows > self.columns:
+                for col in range(self.columns):
+                    for row in self.elements:
+                        transpose.append(row[col])
+                    transposedElements.append(transpose)
+                    transpose = []
+
+                self.elements = transposedElements
+                self.rows, self.columns = self.columns, self.rows
             
         else:
-            self.transposedElements = elements
-            return transposedElements
 
-        self.transposedElements = transposedElements
+            if self.rows == 1:
+                transposedElements = []
+                transpose = []
+                for col in self.elements[0]:
+                    transposedElements.append([col])
+                self.elements = transposedElements
 
-        return transposedElements
+                self.rows, self.columns = self.columns, self.rows
+            
+            else:
+                transposedElements = []
+                transpose = []
+                for row in self.elements:
+                    for col in row:
+                        transpose.append(col)
+
+                transposedElements.append(transpose)
+
+                self.elements = transposedElements
+
+                self.rows, self.columns = self.columns, self.rows
     
+
+
     def addRow(self, rowEntries):
         
         '''Adds a row to the vertical end of the matrix. rowEntries must be an iterable.'''
@@ -158,7 +199,6 @@ class matrix():
         
         '''Changes a given element's value. ARGUMENT USES NORMAL MATRIX I,J NOTATION. DOES NOT USE ZERO BASED INDEXING.'''
 
-        print(row,col,val)
 
         if (row > self.rows) or (row < 1):
             print("Row number accessed does not exist.")

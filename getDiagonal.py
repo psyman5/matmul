@@ -1,8 +1,6 @@
 from matrixClass import matrix
 
-def getTrace(matrix):
-
-    '''Returns trace and the diagonal of a given matrix object.'''
+def getDiagonal(matrix):
 
     if matrix.rows != matrix.columns:
         print("Non-Square Matrix")
@@ -13,9 +11,9 @@ def getTrace(matrix):
 
         for index, row in enumerate(matrix.elements):
             diagonalList.append(row[index])
-            
-        trace = sum(diagonalList)
+        
+        diagTuple = tuple(diagonalList)
 
         del diagonalList
 
-        return trace
+        return diagTuple

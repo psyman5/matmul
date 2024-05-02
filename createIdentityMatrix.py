@@ -4,7 +4,7 @@ def CreateIdentityMatrix(size):
 
     '''Creates a square identity matrix of given size (size*size). Returns a matrix object.'''
 
-    identityMatrix = matrix(size, size, [], [], [] , False)
+    identityMatrix = matrix(size, size, [], [], False)
     oneCounter = 0
 
     for x in range(size**2):
