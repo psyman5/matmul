@@ -74,7 +74,7 @@ class matrix():
 
     def transposeMatrix(self):
         
-        '''Takes the transpose of the matrix. Alters the object elements to be those of the transpose.'''
+        '''Takes the transpose of the matrix. Returns matrix with elements transposed.'''
         
         if (self.rows == self.columns) and (self.rows != 1 and self.columns != 1):
 
@@ -95,22 +95,38 @@ class matrix():
 
             self.rows, self.columns = self.columns, self.rows
 
-        elif ((self.rows > self.columns) or (self.rows < self.columns)) and (self.rows != 1 and self.columns != 1):
+        elif (self.rows != self.columns) and (self.rows != 1 and self.columns != 1):
             transposedElements = []
             transpose = []
-
 
             if self.rows > self.columns:
                 for col in range(self.columns):
                     for row in self.elements:
                         transpose.append(row[col])
+                        print(col, row, transpose, transposedElements)
                     transposedElements.append(transpose)
                     transpose = []
+                
+                print("\n")
+                    
 
                 self.elements = transposedElements
                 self.rows, self.columns = self.columns, self.rows
+
+            else:
+                for col in range(self.columns):
+                    for row in self.elements:
+                        transpose.append(row[col])
+                        #print(col, row, transpose, transposedElements)
+                    transposedElements.append(transpose)
+                    transpose = []
+                
+                #print("\n")
             
-        else:
+                self.elements = transposedElements
+                self.rows, self.columns = self.columns, self.rows
+
+        elif self.rows != 1 and self.columns != 1:
 
             if self.rows == 1:
                 transposedElements = []

@@ -55,14 +55,10 @@ def testFunctions():
     
     return 0
 
-matrix1 = matrix(3,2, [] , [x for x in range(6)], True)
+matrix1 = matrix(2,3, [] , [x for x in range(6)], False)
 matrix1.constructMatrix()
 
-matrix2 = matrix(2,3, [] , [x for x in range(6)], True)
+matrix2 = matrix(3,2, [] , [x for x in range(6)], False)
 matrix2.constructMatrix()
 
-matrix1.transposeMatrix()
-matrix1.transposeMatrix()
-
-matrix2.transposeMatrix()
-matrix2.transposeMatrix()
+matMul(matrix1, matrix2).displayMatrix()

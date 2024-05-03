@@ -8,7 +8,7 @@ def matMul(m1, m2): #TODO: move to Strassen's Algorithm
     if m1.rows != m2.columns:
         print("Incompatible Matrices!")
         print((m1.rows, m1.columns), (m2.rows, m2.columns))
-        return
+        raise ValueError
     
     rowCounter = 0
     columnCounter = 0
