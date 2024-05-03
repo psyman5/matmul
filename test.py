@@ -35,7 +35,6 @@ def testFunctions():
 
         testMatrix2 = matrix(x, x+1,[],[x for x in range(x*(x+1))], False)
         testMatrix2.constructMatrix()
-        takeExponent(testMatrix, x)
         matMul(testMatrix, testMatrix2)
         
         scalarMult(testMatrix, x)
@@ -48,17 +47,9 @@ def testFunctions():
         testMatrix2 = matrix(x+1,x,[],[x for x in range(x*(x+1))], False)
         testMatrix2.constructMatrix()
 
-        takeExponent(testMatrix, x)
         matMul(testMatrix, testMatrix2)
         scalarMult(testMatrix, x)
         matrixToCode(testMatrix)
     
     return 0
 
-matrix1 = matrix(2,3, [] , [x for x in range(6)], False)
-matrix1.constructMatrix()
-
-matrix2 = matrix(3,2, [] , [x for x in range(6)], False)
-matrix2.constructMatrix()
-
-matMul(matrix1, matrix2).displayMatrix()

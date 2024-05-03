@@ -103,12 +103,9 @@ class matrix():
                 for col in range(self.columns):
                     for row in self.elements:
                         transpose.append(row[col])
-                        print(col, row, transpose, transposedElements)
+                        #print(col, row, transpose, transposedElements)
                     transposedElements.append(transpose)
-                    transpose = []
-                
-                print("\n")
-                    
+                    transpose = []           
 
                 self.elements = transposedElements
                 self.rows, self.columns = self.columns, self.rows

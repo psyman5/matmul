@@ -8,6 +8,6 @@ def takeExponent(mat, power):
     
     for x in range(power):
         newMat = matMul(mat, newMat)
-    
+
     return newMat
         
